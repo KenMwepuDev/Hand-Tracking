@@ -19,5 +19,15 @@ Et après on installe la libraire open cv qui nous permettra dans notre contexte
 
 Et maintenant pour débuter avec le code on commence par importer open cv et mediapipe
 
-import cv2
+import cv2            
 import mediapipe as mp
+
+Ensuite on récupère la vidéo soit de la machine comme suite :
+
+cap = cv2.VideoCapture(r'chemin_du_fichier')
+
+Ou de la webcam comme suite :
+
+cap = cv2.VideoCapture(0)
+
+Le nombre entre parenthèse représente le code de la webcam (0 est pour la première webcam détecté)
