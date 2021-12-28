@@ -76,14 +76,6 @@ Et pour finir on écrit le code qui tournera dans une boucle jusqu’à ce que l
 >
 >`           mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)`
 >
->`    CurrentTime = time.time()
->
->`    fps = 1/(CurrentTime - PreviousTime)`     
->    
->`    PreviousTime = CurrentTime`
->
->`    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 2)`
->
 >`    cv2.imshow("Frame", img)`
 >    
 >`    if cv2.waitKey(20) & 0xFF==ord('d')`
