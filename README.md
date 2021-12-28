@@ -19,9 +19,9 @@ Et après on installe la libraire **Open cv** qui nous permettra dans notre cont
 
 Et maintenant pour débuter avec le code on commence par importer open cv et mediapipe
 
-`
->import cv2            
->import mediapipe as mp`
+
+`import cv2`    
+`import mediapipe as mp`
 
 Ensuite on récupère la vidéo soit de la machine comme suite :
 
@@ -50,34 +50,46 @@ Et après cela on crée l’objet **Hands**
 
 Et pour finir on écrit le code qui tournera dans une boucle jusqu’à ce que l’utilisateur puisse appuyer sur la touche **« D »** du clavier.
 
-`
->while (True):
->    success, img = cap.read() #On lit une image (frame) de la vidéo
->    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) #On convertie l’image qui est en BGR en RGB
-
->    result = Hands.process(imgRGB) #Détecte la mains et récupère ces coordonnés
-
->    if (result.multi_hand_landmarks): #Vérifie si le résultat ne pas nulle
->       #Traçage des lignes 
-> for handLms in result.multi_hand_landmarks:
->            for id,lm in enumerate(handLms.landmark):
->                h, w, c = img.shape
->                cx, cy = int(lm.x*w), int(lm.y*h)
->	    #Dessine un grand cercle 
->                if (id == 0):
->                    cv2.circle(img, (cx, cy), 25, (255, 0, 255), cv2.FILLED)
->           mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
+>`while (True):`
 >
->    CurrentTime = time.time()
->    fps = 1/(CurrentTime - PreviousTime)
->    PreviousTime = CurrentTime
->    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 2)
+>`    success, img = cap.read() #On lit une image (frame) de la vidéo`
 >
->    cv2.imshow("Frame", img)
+>`    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) #On convertie l’image qui est en BGR en RGB`
+>
+>`    result = Hands.process(imgRGB) #Détecte la mains et récupère ces coordonnés`
+>
+>`    if (result.multi_hand_landmarks): #Vérifie si le résultat ne pas nulle`
+>
+>`       #Traçage des lignes`
+>
+>` for handLms in result.multi_hand_landmarks:`
+>
+>`            for id,lm in enumerate(handLms.landmark):`
+>
+>`                h, w, c = img.shape`
+>
+>`                cx, cy = int(lm.x*w), int(lm.y*h)`
+>
+>`                if (id == 0):`
+>
+>`                    cv2.circle(img, (cx, cy), 25, (255, 0, 255), cv2.FILLED)`
+>
+>`           mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)`
+>
+>`    CurrentTime = time.time()
+>
+>`    fps = 1/(CurrentTime - PreviousTime)`     
 >    
->    if cv2.waitKey(20) & 0xFF==ord('d'):
->        break
+>`    PreviousTime = CurrentTime`
 >
->cap.release()
->cv2.destroyAllWindows()
-`
+>`    cv2.putText(img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 2)`
+>
+>`    cv2.imshow("Frame", img)`
+>    
+>`    if cv2.waitKey(20) & 0xFF==ord('d')`
+>
+>`        break`
+>
+>`cap.release()`    
+> 
+>`cv2.destroyAllWindows()`
